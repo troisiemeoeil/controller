@@ -1,62 +1,30 @@
 
-import { useState } from 'react';
+import { Laptop2, ScreenShare, Volume1 } from 'lucide-react';
 import './App.css'
-// import { CircularSlider } from './components/circular-slider'
-// import { JoystickController } from './components/joystick-controller'
-import { SwipeSlider } from './components/swiper-slider'
-// import { VolumeSlider } from './components/volume-slider'
-// import {Chip} from "@heroui/chip";
-import { Badge } from "@/components/ui/badge"
-import { SettingsIcon } from 'lucide-react';
-import { VolumeSlider } from './components/volume-slider';
-import { MultiSelect, type Option } from "./components/multi-select"
-import { SwitchBtn } from './components/switchBtn'
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from "@/components/ui/drawer"
-import { Button } from './components/ui/button';
-import { Minus, Plus } from "lucide-react"
-import { JoystickController } from './components/joystick-controller';
-import LiveStream from './components/feed';
-function App() {
-  const [showCamera, setShowCamera] = useState(false)
-  const [selectedDevices, setSelectedDevices] = useState<string[]>([])
-  const [goal, setGoal] = useState(0)
- 
-  function onClick(adjustment: number) {
-    setGoal(Math.max(0, Math.min(100, goal + adjustment)))
-  }
-  const deviceOptions: Option[] = [
-    { value: "projector1", label: "Projector one" },
-    { value: "projector2", label: "Projector two" },
-    { value: "laptop", label: "Laptop" },
 
-  ]
+
+import RemoteController from './components/remote-controller';
+import { SwitchBtn } from './components/switchBtn';
+function App() {
 
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-baseline bg-white">
-      <div className="w-full max-w-6xl  ">
-        <div className=" mx-auto  flex justify-center ">
-          <img id="logo" src="./logo.png" width={20} height={20} alt="" className="w-[400px] h-[200px] object-contain" />
-        </div>
+    <div className="flex min-h-screen flex-col  justify-center items-center bg-white">
+      <div className=" mx-auto absolute z-10 bottom-0 left-1/2 -translate-x-1/2 ">
+        <img id="logo" src="./logo.png" width={20} height={20} alt="" className="w-[150px] h-[150px] object-contain" />
+      </div>
+      <div className="w-full max-w-6xl relative ">
 
-        <div className="grid grid-cols-1 md:grid-cols-3  h-[70vh] gap-8 items-center">
-          <div className="flex flex-col h-[70vh] items-center space-y-2 ">
+
+        <div className="grid grid-cols-1 md:grid-cols-3  h-[100vh] gap-8 items-center">
+          <div className="flex flex-col h-[90vh] items-center space-y-2 ">
             {/* Camera Feed */}
-            <div className="w-full h-[30vh] relative rounded-md">
+            {/* <div className="w-full h-[30vh] relative rounded-md">
               <Badge className='z-10 bg-primary flex justify-between  items-center text-white font-semibold py-1 absolute top-1 left-1 rounded-md' >
                 <div className='w-3 h-3 bg-red-600 rounded-full'></div>
                 Live
               </Badge>
-              <LiveStream streamUrl="https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8" />
+             <LiveStream streamUrl="https://iptv-org.github.io/iptv/categories/movies.m3u" />
 
 
               <div className='flex w-full  justify-between items-center absolute bottom-1 left-1 px-2'>
@@ -124,33 +92,33 @@ function App() {
 
 
               </div>
-            </div>
+            </div> */}
             {/* Camera Switch */}
             <div className="w-full h-full bg-gray-900 border-gray-300 border-2 relative rounded-md">
-              <img src="./cam.png" alt="" className="blur-xs absolute top-0 right-0 w-[250px] h-[250px] rounded-md object-contain" />
-              <div className="absolute top-0 left-0 w-full  h-full flex flex-col items-stretch p-4 justify-evenly">
+              <img src="./cam.png" alt="" className="blur-lg absolute top-0 right-0 w-[250px] h-[250px] rounded-md object-contain" />
+              <div className="absolute top-0 left-0 w-full  h-full flex flex-col items-stretch p-4 justify-between">
 
                 <div className='space-y-1 flex flex-col items-start'>
                   <h4 className="font-medium text-gray-400">Camera</h4>
-                  <h1 className="text-4xl font-medium align-text-left text-gray-100"> Bardi Smart <br /> IP Camera</h1>
+                  <h1 className="text-4xl font-medium align-text-left text-gray-100"> Bardi Smart  </h1>
+                  <h2 className="text-2xl font-medium align-text-left text-gray-100"> IP Camera</h2>
                 </div>
-                <div className=' flex justify-evenly items-center'>
+                <RemoteController />
+                {/* <div className=' flex justify-evenly items-center'>
                   <SwipeSlider onComplete={() => setShowCamera(!showCamera)} />
                   <button className={`w-12 h-12  bg-gray-400 flex justify-center  items-center text-white font-semibold rounded-full ${showCamera ? 'bg-green-400 text-white' : 'bg-red-600 text-white'}`} >
                     {showCamera ? 'ON' : 'OFF'}
                   </button>
 
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
 
           {/* second card */}
-          <div className="flex flex-col h-[70vh] items-center ">
-
-
+          <div className="flex flex-col h-[90vh] items-center ">  
             {/* Camera Switch */}
-            <div className="w-full relative  h-full bg-gray-900 border-gray-300 border-2  rounded-md">
+            <div className="w-full relative justify-between h-full bg-gray-900 border-gray-300 border-2  rounded-md">
               <img src="./mic.png" alt="" className="absolute top-0 right-0 w-[280px] h-[280px] rounded-md object-contain blur-xs" />
               <div className=" w-full  h-full flex flex-col items-stretch p-4 justify-evenly">
 
@@ -158,39 +126,58 @@ function App() {
                   <h4 className="font-medium text-gray-400">Microphone</h4>
                   <h1 className="text-5xl text-start font-medium text-gray-100">Shure<br /> MXA920</h1>
                 </div>
-                <div className=' flex absolute bottom-3 right-5 justify-end items-center'>
-                  <VolumeSlider onChange={(volume) => console.log(`Volume: ${volume}`)} className="z-10" />
+
+                <div className='w-full h-full flex  items-center justify-center gap-20 z-10'>
+                  <button id='mic'>
+
+                  <SwitchBtn />
+                  </button>
+
+                  <div className=' flex  justify-end items-center'>
+                    <div className="side-btns p-1.5 w-[6rem] h-[20rem] text-xs  rounded-full shadow-inner">
+                      <div className="inner flex flex-col justify-between items-center h-full py-1.5 bg-white/20 rounded-full shadow-md">
+                        <button id='volume-up' className="btn w-18 h-22 flex justify-center items-center bg-black/80 rounded-full">
+                          <img src="https://www.yudiz.com/codepen/smart-remote-control/add.svg" alt="add" className="max-w-1/2" />
+                        </button>
+                        <div><Volume1 size={32} className="text-white" /></div>
+                        <button id='volume-down' className="btn w-18 h-22 flex justify-center items-center bg-[#222] rounded-full">
+                          <img src="https://www.yudiz.com/codepen/smart-remote-control/minus.svg" alt="minus" className="max-w-1/2" />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+
               </div>
             </div>
           </div>
 
 
           {/* third card */}
-          <div className="flex flex-col h-[70vh] items-center space-y-2 ">
+          <div className="flex flex-col h-[90vh] items-center space-y-2 ">
 
 
             {/* Camera Switch */}
             <div className="w-full h-full bg-gray-900 border-gray-300 border-2 relative rounded-md">
-              <img src="./projector.png" alt="" className="absolute top-0 right-0 w-[250px] h-[250px] rounded-md object-contain blur-xs" />
-              <div className="absolute top-0 left-0 w-full  h-full flex flex-col items-stretch p-4 justify-evenly">
+              <img src="./projector.png" alt="" className="absolute top-0 right-0 w-[250px] h-[250px] rounded-md object-contain blur-lg" />
+              <div className="absolute top-0 left-0 w-full  h-full flex flex-col items-stretch p-4 justify-between">
 
                 <div className='space-y-1 flex flex-col items-start'>
                   <h4 className="font-medium text-gray-400">Display</h4>
                   <h1 className="text-5xl text-start  font-medium text-gray-100"> Connect a<br />Projector</h1>
                 </div>
-                <div className=' flex flex-col justify-evenly items-center'>
-                  <div className="w-full space-y-2">
-                    <label className="text-sm font-medium text-gray-700">Select a source device </label>
-                    <MultiSelect
-                      options={deviceOptions}
-                      selectedValues={selectedDevices}
-                      onChange={setSelectedDevices}
-                      placeholder="Select devices"
-                    />
-
+                <div className=' flex flex-col gap-3 justify-evenly items-center'>
+                  <div className="w-full flex flex-col space-y-2">
+                    <label className="text-sm font-medium text-gray-200">Select a source device </label>
+                    <div className='flex gap-4 py-2 '>
+                  <button className="w-1/2 h-40 flex justify-center items-center bg-gray-400 text-white font-semibold rounded-md py-2"><ScreenShare size={32} className="text-white" /></button>
+                  <button className="w-1/2 h-40 flex justify-center items-center bg-gray-400 text-white font-semibold rounded-md py-2"><Laptop2 size={32} className="text-white" /></button>
+                    </div>
                   </div>
+                  <button id='projector'>
+
                   <SwitchBtn />
+                  </button>
 
                 </div>
               </div>

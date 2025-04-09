@@ -11,7 +11,7 @@ export function SwitchBtn() {
     return (
         <motion.button
                 onClick={toggleStartClose}
-                className="mt-6 w-14 h-14 rounded-full flex items-center justify-center focus:outline-none"
+                className=" w-17 h-17 rounded-full flex items-center justify-center focus:outline-none"
                 whileTap={{ scale: 0.95 }}
                 style={{
                     background: isStarted 
